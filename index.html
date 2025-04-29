@@ -3,9 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <title>Bewohner Anmeldung</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background-color: #f4f4f4;
+    }
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label, input, button {
+      display: block;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-  <h1>Willkommen zur Bewohner-Anmeldung</h1>
-  <p>Bitte scannen Sie den QR-Code und melden Sie sich an.</p>
-</body>
-</html>
+
+  <h1 style="text-align: center;">Willkommen zur Bewohner-Anmeldung</h1>
+  <p style="text-align: center;">Bitte geben Sie Ihre E-Mail ein und akzeptieren Sie die Datenschutzerklärung.</p>
+
+  <form id="anmeldungForm" onsubmit="return handleSubmit(event)">
+    <label for="email">E-Mail-Adresse:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label>
+      <input type="checkbox" id="datenschutz" required>
+      Ich akzeptiere die <a href="#">Datenschutzerklärung</a>
+    </label>
+
+    <button type="submit">Anmelden</button>
+    <p id="meldung" style="color: green;"></p>
+  </form>
+
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault(); // verhindert das Neuladen
+
+      const email = document.getElementById('email').value;
+      const datenschutz = document.getElementById('datenschutz').checked;
+
+      if (email && datenschutz) {
+        document.getElementById('meldung').textContent = "Danke, Sie
