@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bewohner Anmeldung</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        input[type="email"], button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .datenschutz {
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Anmeldung</h1>
+        <form id="anmeldeformular">
+            <label for="email">E-Mail-Adresse:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="datenschutz">
+                <input type="checkbox" id="datenschutz" required>
+                Ich habe die <a href="/datenschutz" target="_blank">Datenschutzerklärung</a> gelesen und akzeptiere diese.
+            </label>
+            <br><br>
+            <button type="submit">Anmelden</button>
+        </form>
+    </div>
+
+    <script>
+        // Formularverarbeitung
+        document.getElementById('anmeldeformular').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            if (document.getElementById('datenschutz').checked) {
+                alert(`Du hast dich erfolgreich mit der E-Mail ${email} angemeldet.`);
+                // Hier könnte eine Anfrage an das Backend gesendet werden, um die E-Mail zu speichern
+                // Beispiel: fetch('/anmelden', { method: 'POST', body: JSON.stringify({ email }) });
+            } else {
+                alert("Du musst die Datenschutzerklärung akzeptieren.");
+            }
+        });
+    </script>
+</body>
+</html>
